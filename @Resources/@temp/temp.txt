@@ -1,0 +1,245 @@
+; How to know the active skin. Returns the number of the loaded skin
+[CheckWidgetSize]
+Measure=WebParser
+Url=file://#SETTINGSPATH#Rainmeter.ini
+RegExp=(?siU)\[11Widgets\\Activity Monitor].*Active=(.*)\n
+StringIndex=1
+CodePage=1200
+
+; Random tips to show in widget settings (Make tips as variables "tipN" and the number is random)
+- You can show second hand of analog clock, go to Settings > Clock > Show seconds.
+- Have you tried dark mode?
+- You can change size of any widget without entering settings, just right click on the widget, choose any size you want.
+- Bla bla bla bla, you sure you even read these tips?
+- Today's tip: Please read these freaking tips!!! 
+
+; Multiplier for (FontSize to Height)
+FontSize * (11 / 6) = Height
+
+; Ways to toggle a variable
+ContextAction=[!WriteKeyValue Variables ShowTitle "(1 - #ShowTitle#)" "#@#vars.inc"][!Refresh]
+ContextAction=[!WriteKeyValue Variables ShowTitle "(#ShowTitle# = 0 ? 1 : 0)"  "#@#vars.inc"][!Refresh]
+
+; Positions and sizes
+60 | 100.5 | 139
+66
+133
+
+; Show settings in context menu (Not included because it refreshes one monitor not all)
+ContextTitle9=[]   Show title
+ContextAction9=[!WriteKeyValue Variables ShowTitle "(1 - #ShowTitle#)" "#@#vars.inc"][!Refresh]
+ContextTitle10=[]   Show more information
+ContextAction10=[!WriteKeyValue Variables ShowInfo "(1 - #ShowInfo#)" "#@#vars.inc"][!Refresh]
+ContextTitle11=[]   Show tooltip
+ContextAction11=[!WriteKeyValue Variables ShowTooltip "(1 - #ShowTooltip#)" "#@#vars.inc"][!Refresh]
+ContextTitle12=-
+
+[CheckShowContextSettings]
+Measure=Calc
+IfCondition=#ShowTitle#
+IfTrueAction=[!SetOption Rainmeter ContextTitle9 "[\x2713]   Show title"]
+IfFalseAction=[!SetOption Rainmeter ContextTitle9 "[\x2800]   Show title"]
+IfCondition2=#ShowInfo#
+IfTrueAction2=[!SetOption Rainmeter ContextTitle10 "[\x2713]   Show more information"]
+IfFalseAction2=[!SetOption Rainmeter ContextTitle10 "[\x2800]   Show more information"]
+IfCondition3=#ShowTooltip#
+IfTrueAction3=[!SetOption Rainmeter ContextTitle11 "[\x2713]   Show tooltip"]
+IfFalseAction3=[!SetOption Rainmeter ContextTitle11 "[\x2800]   Show tooltip"]
+
+
+; Substitute from AutoScale
+Substitute="\s+[TGMKB]":""
+RegExpSubstitute=1
+
+; Test search
+[TestSearchCheckInput]
+; Capturing word "test" regardless of whether it's complete or just the first letters and regardless of case
+Measure=String
+String=[SearchInput]
+DynamicVariables=1
+;IfMatch=(?i)\b(t|te|tes|test)\b
+
+IfMatch=(?i)\b(te?s?t?)\b
+IfMatchAction=[!SetOption SearchText Text "Search results"][!HideMeterGroup SearchRecent][!SetOptionGroup SearchRecent Y "0R"][!ShowMeterGroup TestSearchGroup][!SetOptionGroup TestSearchGroup Y "(10*#Scale#)R"][!HideMeterGroup SearchInfo]
+IfNotMatchAction=[]
+
+IfMatch2=(?i)\b(te?s?t?i?n?g?)\b
+IfMatchAction2=[!SetOption SearchText Text "Search results"][!HideMeterGroup SearchRecent][!SetOptionGroup SearchRecent Y "0R"][!ShowMeterGroup TestingSearchGroup][!SetOptionGroup TestingSearchGroup Y "(10*#Scale#)R"][!HideMeterGroup SearchInfo]
+IfNotMatchAction2=[]
+
+;//////////////////////////////////////////////////////
+; Search results (For testing only)
+;//////////////////////////////////////////////////////
+
+[TestSearchResult]
+Meter=String
+Group=TestSearchGroup
+Text="This is a test for search results - Captured (test)"
+X=0r
+Y=0R
+FontFace=#Font#
+FontSize=(13*#Scale#)
+FontWeight=400
+FontColor=[#[#ThemeMode]FG]
+StringAlign=Top
+AntiAlias=1
+ClipString=2
+ClipStringW=(505*#Scale#)
+ClipStringH=(50*#Scale#)
+Hidden=1
+Container=TabCont
+InlinePattern=(?i)([SearchInputRegex])
+InlineSetting=Color | 387aff
+
+[TestingSearchResult]
+Meter=String
+Group=TestingSearchGroup
+Text="This is a test for search results - Captured (testing)"
+X=0r
+Y=0R
+FontFace=#Font#
+FontSize=(13*#Scale#)
+FontWeight=400
+FontColor=[#[#ThemeMode]FG]
+StringAlign=Top
+AntiAlias=1
+ClipString=2
+ClipStringW=(505*#Scale#)
+ClipStringH=(50*#Scale#)
+Hidden=1
+Container=TabCont
+InlinePattern=(?i)([SearchInputRegex])
+InlineSetting=Color | 387aff
+
+
+; SearchInfoText
+Text="Sorry, Search is currently not supported.#CRLF#Please wait for the next version of 11Widgets."
+
+;//////////////////////////////////////////////////////
+; Drive total size suffix & scale
+IfCondition=MeasureDrive3Total <= 999
+IfTrueAction=[!SetVariable Drive3TotalScale "1"][!SetVariable Drive3TotalSuffix "B"]
+IfCondition2=MeasureDrive3Total > 999
+IfTrueAction2=[!SetVariable Drive3TotalScale "1024"][!SetVariable Drive3TotalSuffix "KB"]
+IfCondition3=(MeasureDrive3Total / 1024) > 999
+IfTrueAction3=[!SetVariable Drive3TotalScale "(1024**2)"][!SetVariable Drive3TotalSuffix "MB"]
+IfCondition4=(MeasureDrive3Total / (1024**2)) > 999
+IfTrueAction4=[!SetVariable Drive3TotalScale "(1024**3)"][!SetVariable Drive3TotalSuffix "GB"]
+IfCondition5=(MeasureDrive3Total / (1024**3)) > 999
+IfTrueAction5=[!SetVariable Drive3TotalScale "(1024**4)"][!SetVariable Drive3TotalSuffix "TB"]
+IfCondition6=(MeasureDrive3Total / (1024**4)) > 999
+IfTrueAction6=[!SetVariable Drive3TotalScale "(1024**5)"][!SetVariable Drive3TotalSuffix "PB"]
+;//////////////////////////////////////////////////////
+
+;//////////////////////////////////////////////////////
+; Testing rounded roundline meter
+[Drive1MeterRoundEnd]
+Meter=Shape
+MeterStyle=MeterRoundEndStyle
+X=(60*#Scale#)
+Y=(65*#Scale#)
+Shape=Ellipse 0, (-32.5*#Scale#), (2.5*#Scale#) | Fill Color #Drive1MeterColor# | StrokeWidth 0
+; Shape2=Ellipse 0, (-32.5*#Scale#), (2.5*#Scale#) | Fill Color ff0000 | StrokeWidth 0
+Shape2=Ellipse [MeasureRoundEndX], [MeasureRoundEndY], (2.5*#Scale#) | Fill Color #Drive1MeterColor# | StrokeWidth 0
+AntiAlias=1
+DynamicVariables=1
+
+[MeasureRoundEndAngle]
+Measure=Calc
+Formula=(Rad(270) + (Rad(360) * ((MeasureDrive1Used/MeasureDrive1Total)*100) / 100))
+DynamicVariables=1
+
+[MeasureRoundEndX]
+Measure=Calc
+Formula=-25 + ( (35 + 35) * Cos([MeasureRoundEndAngle]) )
+DynamicVariables=1
+
+[MeasureRoundEndY]
+Measure=Calc
+Formula=-25 + ( (30.5 + 35) * Sin([MeasureRoundEndAngle]) )
+DynamicVariables=1
+;//////////////////////////////////////////////////////
+
+;//////////////////////////////////////////////////////
+[TransCheck]
+Measure=Calc
+Formula=( #Trans# / 255 ) * 100
+DynamicVariables=1
+
+TransContextTitle=0%
+TransContextAction=[!WriteKeyValue Variables Trans "1" "#@#vars.inc"][!SetVariable Trans "1"][!SetTransparencyGroup "1" "11Widgets"]
+TransContextTitle2=10%
+TransContextAction2=[!WriteKeyValue Variables Trans "25" "#@#vars.inc"][!SetVariable Trans "25"][!SetTransparencyGroup "25" "11Widgets"]
+TransContextTitle3=20%
+TransContextAction3=[!WriteKeyValue Variables Trans "50" "#@#vars.inc"][!SetVariable Trans "50"][!SetTransparencyGroup "50" "11Widgets"]
+TransContextTitle4=30%
+TransContextAction4=[!WriteKeyValue Variables Trans "76" "#@#vars.inc"][!SetVariable Trans "76"][!SetTransparencyGroup "76" "11Widgets"]
+TransContextTitle5=40%
+TransContextAction5=[!WriteKeyValue Variables Trans "101" "#@#vars.inc"][!SetVariable Trans "101"][!SetTransparencyGroup "101" "11Widgets"]
+TransContextTitle6=50%
+TransContextAction6=[!WriteKeyValue Variables Trans "127" "#@#vars.inc"][!SetVariable Trans "127"][!SetTransparencyGroup "127" "11Widgets"]
+TransContextTitle7=60%
+TransContextAction7=[!WriteKeyValue Variables Trans "152" "#@#vars.inc"][!SetVariable Trans "152"][!SetTransparencyGroup "152" "11Widgets"]
+TransContextTitle8=70%
+TransContextAction8=[!WriteKeyValue Variables Trans "178" "#@#vars.inc"][!SetVariable Trans "178"][!SetTransparencyGroup "178" "11Widgets"]
+TransContextTitle9=80%
+TransContextAction9=[!WriteKeyValue Variables Trans "203" "#@#vars.inc"][!SetVariable Trans "203"][!SetTransparencyGroup "203" "11Widgets"]
+TransContextTitle10=90%
+TransContextAction10=[!WriteKeyValue Variables Trans "229" "#@#vars.inc"][!SetVariable Trans "229"][!SetTransparencyGroup "229" "11Widgets"]
+TransContextTitle11=100%
+TransContextAction11=[!WriteKeyValue Variables Trans "255" "#@#vars.inc"][!SetVariable Trans "255"][!SetTransparencyGroup "255" "11Widgets"]
+;//////////////////////////////////////////////////////
+
+; Drive letters context menu (From A to Z) (Z not working because maximum items 25)
+Drive1LetterContextTitle=A
+Drive1LetterContextAction=[!SetVariable Drive1Letter "A"][!WriteKeyValue Variables Drive1Letter "A" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle2=B
+Drive1LetterContextAction2=[!SetVariable Drive1Letter "B"][!WriteKeyValue Variables Drive1Letter "B" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle3=C
+Drive1LetterContextAction3=[!SetVariable Drive1Letter "C"][!WriteKeyValue Variables Drive1Letter "C" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle4=D
+Drive1LetterContextAction4=[!SetVariable Drive1Letter "D"][!WriteKeyValue Variables Drive1Letter "D" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle5=E
+Drive1LetterContextAction5=[!SetVariable Drive1Letter "E"][!WriteKeyValue Variables Drive1Letter "E" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle6=F
+Drive1LetterContextAction6=[!SetVariable Drive1Letter "F"][!WriteKeyValue Variables Drive1Letter "F" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle7=G
+Drive1LetterContextAction7=[!SetVariable Drive1Letter "G"][!WriteKeyValue Variables Drive1Letter "G" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle8=H
+Drive1LetterContextAction8=[!SetVariable Drive1Letter "H"][!WriteKeyValue Variables Drive1Letter "H" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle9=I
+Drive1LetterContextAction9=[!SetVariable Drive1Letter "I"][!WriteKeyValue Variables Drive1Letter "I" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle10=J
+Drive1LetterContextAction10=[!SetVariable Drive1Letter "J"][!WriteKeyValue Variables Drive1Letter "J" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle11=K
+Drive1LetterContextAction11=[!SetVariable Drive1Letter "K"][!WriteKeyValue Variables Drive1Letter "K" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle12=L
+Drive1LetterContextAction12=[!SetVariable Drive1Letter "L"][!WriteKeyValue Variables Drive1Letter "L" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle13=M
+Drive1LetterContextAction13=[!SetVariable Drive1Letter "M"][!WriteKeyValue Variables Drive1Letter "M" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle14=N
+Drive1LetterContextAction14=[!SetVariable Drive1Letter "N"][!WriteKeyValue Variables Drive1Letter "N" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle15=O
+Drive1LetterContextAction15=[!SetVariable Drive1Letter "O"][!WriteKeyValue Variables Drive1Letter "O" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle16=P
+Drive1LetterContextAction16=[!SetVariable Drive1Letter "P"][!WriteKeyValue Variables Drive1Letter "P" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle17=Q
+Drive1LetterContextAction17=[!SetVariable Drive1Letter "Q"][!WriteKeyValue Variables Drive1Letter "Q" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle18=R
+Drive1LetterContextAction18=[!SetVariable Drive1Letter "R"][!WriteKeyValue Variables Drive1Letter "R" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle19=S
+Drive1LetterContextAction19=[!SetVariable Drive1Letter "S"][!WriteKeyValue Variables Drive1Letter "S" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle20=T
+Drive1LetterContextAction20=[!SetVariable Drive1Letter "T"][!WriteKeyValue Variables Drive1Letter "T" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle21=U
+Drive1LetterContextAction21=[!SetVariable Drive1Letter "U"][!WriteKeyValue Variables Drive1Letter "U" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle22=V
+Drive1LetterContextAction22=[!SetVariable Drive1Letter "V"][!WriteKeyValue Variables Drive1Letter "V" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle23=W
+Drive1LetterContextAction23=[!SetVariable Drive1Letter "W"][!WriteKeyValue Variables Drive1Letter "W" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle24=X
+Drive1LetterContextAction24=[!SetVariable Drive1Letter "X"][!WriteKeyValue Variables Drive1Letter "X" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle25=Y
+Drive1LetterContextAction25=[!SetVariable Drive1Letter "Y"][!WriteKeyValue Variables Drive1Letter "Y" "#@#vars.inc"][!RefreshGroup Monitors]
+Drive1LetterContextTitle26=Z
+Drive1LetterContextAction26=[!SetVariable Drive1Letter "Z"][!WriteKeyValue Variables Drive1Letter "Z" "#@#vars.inc"][!RefreshGroup Monitors]
