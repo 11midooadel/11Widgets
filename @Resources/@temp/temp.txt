@@ -112,9 +112,6 @@ InlinePattern=(?i)([SearchInputRegex])
 InlineSetting=Color | 387aff
 
 
-; SearchInfoText
-Text="Sorry, Search is currently not supported.#CRLF#Please wait for the next version of 11Widgets."
-
 ;//////////////////////////////////////////////////////
 ; Drive total size suffix & scale
 IfCondition=MeasureDrive3Total <= 999
