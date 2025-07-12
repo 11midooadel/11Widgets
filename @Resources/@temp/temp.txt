@@ -164,27 +164,27 @@ Formula=( #Trans# / 255 ) * 100
 DynamicVariables=1
 
 TransContextTitle=0%
-TransContextAction=[!WriteKeyValue Variables Trans "1" "#@#vars.inc"][!SetVariable Trans "1"][!SetTransparencyGroup "1" "11Widgets"]
+TransContextAction=[!WriteKeyValue Variables Trans "1" "#@#vars.inc"][!SetVariable Trans "1"][!SetTransparencyGroup "1" "11WidgetsSkins"]
 TransContextTitle2=10%
-TransContextAction2=[!WriteKeyValue Variables Trans "25" "#@#vars.inc"][!SetVariable Trans "25"][!SetTransparencyGroup "25" "11Widgets"]
+TransContextAction2=[!WriteKeyValue Variables Trans "25" "#@#vars.inc"][!SetVariable Trans "25"][!SetTransparencyGroup "25" "11WidgetsSkins"]
 TransContextTitle3=20%
-TransContextAction3=[!WriteKeyValue Variables Trans "50" "#@#vars.inc"][!SetVariable Trans "50"][!SetTransparencyGroup "50" "11Widgets"]
+TransContextAction3=[!WriteKeyValue Variables Trans "50" "#@#vars.inc"][!SetVariable Trans "50"][!SetTransparencyGroup "50" "11WidgetsSkins"]
 TransContextTitle4=30%
-TransContextAction4=[!WriteKeyValue Variables Trans "76" "#@#vars.inc"][!SetVariable Trans "76"][!SetTransparencyGroup "76" "11Widgets"]
+TransContextAction4=[!WriteKeyValue Variables Trans "76" "#@#vars.inc"][!SetVariable Trans "76"][!SetTransparencyGroup "76" "11WidgetsSkins"]
 TransContextTitle5=40%
-TransContextAction5=[!WriteKeyValue Variables Trans "101" "#@#vars.inc"][!SetVariable Trans "101"][!SetTransparencyGroup "101" "11Widgets"]
+TransContextAction5=[!WriteKeyValue Variables Trans "101" "#@#vars.inc"][!SetVariable Trans "101"][!SetTransparencyGroup "101" "11WidgetsSkins"]
 TransContextTitle6=50%
-TransContextAction6=[!WriteKeyValue Variables Trans "127" "#@#vars.inc"][!SetVariable Trans "127"][!SetTransparencyGroup "127" "11Widgets"]
+TransContextAction6=[!WriteKeyValue Variables Trans "127" "#@#vars.inc"][!SetVariable Trans "127"][!SetTransparencyGroup "127" "11WidgetsSkins"]
 TransContextTitle7=60%
-TransContextAction7=[!WriteKeyValue Variables Trans "152" "#@#vars.inc"][!SetVariable Trans "152"][!SetTransparencyGroup "152" "11Widgets"]
+TransContextAction7=[!WriteKeyValue Variables Trans "152" "#@#vars.inc"][!SetVariable Trans "152"][!SetTransparencyGroup "152" "11WidgetsSkins"]
 TransContextTitle8=70%
-TransContextAction8=[!WriteKeyValue Variables Trans "178" "#@#vars.inc"][!SetVariable Trans "178"][!SetTransparencyGroup "178" "11Widgets"]
+TransContextAction8=[!WriteKeyValue Variables Trans "178" "#@#vars.inc"][!SetVariable Trans "178"][!SetTransparencyGroup "178" "11WidgetsSkins"]
 TransContextTitle9=80%
-TransContextAction9=[!WriteKeyValue Variables Trans "203" "#@#vars.inc"][!SetVariable Trans "203"][!SetTransparencyGroup "203" "11Widgets"]
+TransContextAction9=[!WriteKeyValue Variables Trans "203" "#@#vars.inc"][!SetVariable Trans "203"][!SetTransparencyGroup "203" "11WidgetsSkins"]
 TransContextTitle10=90%
-TransContextAction10=[!WriteKeyValue Variables Trans "229" "#@#vars.inc"][!SetVariable Trans "229"][!SetTransparencyGroup "229" "11Widgets"]
+TransContextAction10=[!WriteKeyValue Variables Trans "229" "#@#vars.inc"][!SetVariable Trans "229"][!SetTransparencyGroup "229" "11WidgetsSkins"]
 TransContextTitle11=100%
-TransContextAction11=[!WriteKeyValue Variables Trans "255" "#@#vars.inc"][!SetVariable Trans "255"][!SetTransparencyGroup "255" "11Widgets"]
+TransContextAction11=[!WriteKeyValue Variables Trans "255" "#@#vars.inc"][!SetVariable Trans "255"][!SetTransparencyGroup "255" "11WidgetsSkins"]
 ;//////////////////////////////////////////////////////
 
 ; Drive letters context menu (From A to Z) (Z not working because maximum items 25)
