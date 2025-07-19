@@ -1,0 +1,10 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Fix incorrect language encoding
+*.ini linguist-language=INI
+*.inc linguist-language=INI
+
+# Ensure files are detectable languages.
+*.ini linguist-detectable
+*.inc linguist-detectable
