@@ -1,2 +1,2 @@
-*.ini linguist-language=Config
-*.inc linguist-language=Include
+*.ini linguist-language=INI
+*.inc linguist-language=INI
