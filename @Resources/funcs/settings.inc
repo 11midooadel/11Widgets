@@ -1,5 +1,6 @@
 [Variables]
 ; Base
+f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseAction SettingsLoadingBG *][!ShowMeterGroup SettingsLoading]
 
 ; Tab style
 f_SwitchOnBG=Fill Color 387aff
