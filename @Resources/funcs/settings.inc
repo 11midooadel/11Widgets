@@ -1,5 +1,7 @@
 [Variables]
 ; Base
+f_CenterWindow=[!SetWindowPosition "((#WORKAREAWIDTH#/2)-(#WindowW#/2))" "((#WORKAREAHEIGHT#/2)-(#WindowH#/2))"]
+
 f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseAction SettingsLoadingBG *][!ShowMeterGroup SettingsLoading]
 
 ; Tab style
