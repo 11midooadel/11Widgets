@@ -5,7 +5,7 @@ f_CenterWindow=[!SetWindowPosition "((#WORKAREAWIDTH#/2)-(#WindowW#/2))" "((#WOR
 f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseAction SettingsLoadingBG *][!ShowMeterGroup SettingsLoading]
 
 ; Tab style
-f_SwitchOnBG=Fill Color 387aff
+f_SwitchOnBG=Fill Color #AccentColor#
 
 f_SwitchOnFG=Offset (30*#Scale#), 0
 
