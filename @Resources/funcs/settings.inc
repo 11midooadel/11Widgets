@@ -2,7 +2,7 @@
 ; Base
 f_CenterWindow=[!SetWindowPosition "((#WORKAREAWIDTH#/2)-(#WindowW#/2))" "((#WORKAREAHEIGHT#/2)-(#WindowH#/2))"]
 
-f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseAction SettingsLoadingBG *][!ShowMeterGroup SettingsLoading]
+f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseActionGroup * RandomTips][!EnableMouseActionGroup * SettingsLoading][!ShowMeterGroup SettingsLoading]
 
 ; Tab style
 f_SwitchOnBG=Fill Color #AccentColor#
