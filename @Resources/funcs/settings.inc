@@ -1,5 +1,7 @@
 [Variables]
 ; Base
+f_Refresh11Widgets=[!RefreshGroup 11WidgetsProcesses][!RefreshGroup 11Widgets]
+
 f_CenterWindow=[!SetWindowPosition "((#WORKAREAWIDTH#/2)-(#WindowW#/2))" "((#WORKAREAHEIGHT#/2)-(#WindowH#/2))"]
 
 f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseActionGroup * RandomTips][!EnableMouseActionGroup * SettingsLoading][!ShowMeterGroup SettingsLoading]
