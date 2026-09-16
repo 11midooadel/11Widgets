@@ -6,6 +6,10 @@ f_CenterWindow=[!SetWindowPosition "((#WORKAREAWIDTH#/2)-(#WindowW#/2))" "((#WOR
 
 f_ShowSettingsLoading=[!HideMeterGroup Sidebar][!DisableMouseAction * *][!EnableMouseActionGroup * RandomTips][!EnableMouseActionGroup * SettingsLoading][!ShowMeterGroup SettingsLoading]
 
+f_MaxWindowWDrag=(Clamp($MouseX$, (1050*#Scale#), #WORKAREAWIDTH#))
+
+f_MaxWindowHDrag=(Clamp($MouseY$, (800*#Scale#), #WORKAREAHEIGHT#))
+
 ; Tab style
 f_SwitchOnBG=Fill Color #AccentColor#
 
